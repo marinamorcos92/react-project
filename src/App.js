@@ -3,19 +3,16 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+      <footer className="App-footer">
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="https://github.com/marinamorcos92/react-project"
           target="_blank"
-          rel="noopener noreferrer"
         >
-          Learn React
+          Open source code
         </a>
-      </header>
+        coded by Marina Morcos
+      </footer>
     </div>
   );
 }
