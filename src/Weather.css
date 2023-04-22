@@ -1,4 +1,13 @@
 .weather {
-  border: 1px solid black;
-  margin-top: 20px;
+  border: 1px solid #d9dce0;
+  margin: 30px auto;
+  padding: 20px;
+  max-width: 500px;
+  font-family: Arial, sans-serif;
+}
+.weather ul {
+  list-style: none;
+}
+.temperature {
+  font-size: 35px;
 }

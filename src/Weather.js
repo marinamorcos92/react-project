@@ -5,8 +5,22 @@ export default function Weather() {
   return (
     <div className="weather">
       <form>
-        <input type="search" placeholder="Search For a City" />
-        <input type="submit" value="Search" className="btn btn-primary" />
+        <div className="row">
+          <div className="col-8">
+            <input
+              type="search"
+              placeholder="Search For a City"
+              autoFocus="on"
+            />
+          </div>
+          <div className="col-4">
+            <input
+              type="submit"
+              value="Search"
+              className="btn btn-primary  w-100"
+            />
+          </div>
+        </div>
       </form>
       <h1>Stockholm</h1>
       <ul>
@@ -15,7 +29,9 @@ export default function Weather() {
       </ul>
       <div className="row">
         <div className="col-6">
-          <img src="https://ssl.gstatic.com/onebox/weather/64/sunny.png" /> 6℃
+          <img src="https://ssl.gstatic.com/onebox/weather/64/sunny.png" />
+          <span className="temperature">6</span>
+          <span className="unit">°C/°F</span>
         </div>
         <div className="col-6">
           <ul>

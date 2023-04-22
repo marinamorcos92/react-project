@@ -7,16 +7,16 @@ function App() {
     <div className="App">
       <Weather />
 
-      <footer className="App-footer">
+      <p className="App-footer">
+        Coded by Marina Morcos
         <a
           className="App-link"
           href="https://github.com/marinamorcos92/react-project"
           target="_blank"
         >
-          Open source code
+          open source code
         </a>
-        coded by Marina Morcos
-      </footer>
+      </p>
     </div>
   );
 }
