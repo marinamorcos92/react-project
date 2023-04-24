@@ -8,7 +8,7 @@ function App() {
       <Weather />
 
       <p className="App-footer">
-        Coded by Marina Morcos
+        Coded by Marina Morcos{" "}
         <a
           className="App-link"
           href="https://github.com/marinamorcos92/react-project"

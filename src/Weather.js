@@ -7,7 +7,7 @@ export default function Weather() {
   const [weatherData, setWeatherData] = useState({});
   function handleResponse(response) {
     setWeatherData({
-      temperature: response.main.data.temp,
+      temperature: response.data.main.temp,
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
       city: response.data.name,
@@ -43,7 +43,10 @@ export default function Weather() {
         </ul>
         <div className="row">
           <div className="col-6">
-            <img src="https://ssl.gstatic.com/onebox/weather/64/sunny.png" />
+            <img
+              src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"
+              alt=""
+            />
             <span className="temperature">
               {Math.round(weatherData.temperature)}
             </span>
