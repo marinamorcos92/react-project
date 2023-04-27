@@ -7,6 +7,7 @@ export default function Weather(props) {
   const [ready, setReady] = useState(false);
   const [weatherData, setWeatherData] = useState({});
   const [stateCity, setCity] = useState(props.defaultCity);
+  const [unit, setUnit] = useState("celsuis");
   function handleResponse(response) {
     setWeatherData({
       date: new Date(response.data.dt * 1000),
@@ -24,6 +25,37 @@ export default function Weather(props) {
     let city = stateCity;
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
+  }
+  function showFahrenheit(event) {
+    event.preventDefault();
+    if (unit === "celsuis") {
+      setWeatherData({
+        date: weatherData.date,
+        temperature: (weatherData.temperature * 9) / 5 + 32,
+        humidity: weatherData.humidity,
+        wind: weatherData.wind,
+        city: weatherData.city,
+        description: weatherData.description,
+        iconUrl: weatherData.iconUrl,
+      });
+      setUnit("fahrenheit");
+    }
+  }
+  function showCelsuis(event) {
+    event.preventDefault();
+
+    if (unit === "fahrenheit") {
+      setWeatherData({
+        date: weatherData.date,
+        temperature: (weatherData.temperature - 32) * (5 / 9),
+        humidity: weatherData.humidity,
+        wind: weatherData.wind,
+        city: weatherData.city,
+        description: weatherData.description,
+        iconUrl: weatherData.iconUrl,
+      });
+      setUnit("celsuis");
+    }
   }
   function handleSubmit(event) {
     event.preventDefault();
@@ -65,11 +97,19 @@ export default function Weather(props) {
         </ul>
         <div className="row">
           <div className="col-6">
-            <img src={weatherData.iconUrl}></img>
+            <img src={weatherData.iconUrl} alt=""></img>
             <span className="temperature">
               {Math.round(weatherData.temperature)}
             </span>
-            <span className="unit">°C</span>
+            <span className="unit">
+              <a href={unit === "fahrenheit" ? "#" : ""} onClick={showCelsuis}>
+                °C
+              </a>
+              |
+              <a href={unit === "celsuis" ? "#" : ""} onClick={showFahrenheit}>
+                °F
+              </a>
+            </span>
           </div>
           <div className="col-6">
             <ul>
