@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Weather.css";
 import axios from "axios";
 import DateFormat from "./DateFormat";
+import WeatherForecast from "./WeatherForecast.js";
 
 export default function Weather(props) {
   const [ready, setReady] = useState(false);
@@ -118,6 +119,7 @@ export default function Weather(props) {
             </ul>
           </div>
         </div>
+        <WeatherForecast />;
       </div>
     );
   } else {

@@ -12,6 +12,7 @@ function App() {
         <a
           className="App-link"
           href="https://github.com/marinamorcos92/react-project"
+          rel="noreferrer"
           target="_blank"
         >
           open source code
