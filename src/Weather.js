@@ -18,6 +18,7 @@ export default function Weather(props) {
       city: response.data.name,
       description: response.data.weather[0].description,
       iconUrl: `http://openweathermap.org/img/w/${response.data.weather[0].icon}.png`,
+      coordinates: response.data.coord,
     });
     setReady(true);
   }
@@ -119,7 +120,10 @@ export default function Weather(props) {
             </ul>
           </div>
         </div>
-        <WeatherForecast />;
+        <WeatherForecast
+          coordinates={weatherData.coordinates}
+          date={weatherData.date}
+        />
       </div>
     );
   } else {
