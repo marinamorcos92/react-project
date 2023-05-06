@@ -7,9 +7,12 @@ import WeatherForecast from "./WeatherForecast.js";
 export default function Weather(props) {
   const [ready, setReady] = useState(false);
   const [weatherData, setWeatherData] = useState({});
+  let [forecast, setForecast] = useState(null);
+  const [foreCastLoaded, setForecastLoaded] = useState(false);
   const [stateCity, setCity] = useState(props.defaultCity);
   const [unit, setUnit] = useState("celsuis");
   function handleResponse(response) {
+    setReady(true);
     setWeatherData({
       date: new Date(response.data.dt * 1000),
       temperature: response.data.main.temp,
@@ -20,8 +23,19 @@ export default function Weather(props) {
       iconUrl: `http://openweathermap.org/img/w/${response.data.weather[0].icon}.png`,
       coordinates: response.data.coord,
     });
-    setReady(true);
+
+    let apiKey = "4af911bf6cc0a30d4ecc3adao79t646b";
+    let longitude = response.data.coord.lon;
+    let latitude = response.data.coord.lat;
+
+    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${longitude}&lat=${latitude}&key=${apiKey}`;
+    axios.get(apiUrl).then(handleForeCastResponse);
   }
+  function handleForeCastResponse(response) {
+    setForecastLoaded(true);
+    setForecast(response.data.daily);
+  }
+
   function search() {
     const apiKey = "a95c2c6739994ba4903e007ee817e7d1";
     let city = stateCity;
@@ -120,10 +134,7 @@ export default function Weather(props) {
             </ul>
           </div>
         </div>
-        <WeatherForecast
-          coordinates={weatherData.coordinates}
-          date={weatherData.date}
-        />
+        {foreCastLoaded ? <WeatherForecast forecast={forecast} /> : <></>}
       </div>
     );
   } else {
